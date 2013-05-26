@@ -1032,7 +1032,7 @@
     </action>
 
     <action path="/patient/emailChange"
-            type="com.worthsoln.patientview.logon.EmailChangeAction"
+            type="org.patientview.patientview.logon.EmailChangeAction"
             name="passwordForm"
             input="input"
             scope="request">
@@ -1041,7 +1041,7 @@
     </action>
 
     <action path="/control/emailChange"
-            type="com.worthsoln.patientview.logon.EmailChangeAction"
+            type="org.patientview.patientview.logon.EmailChangeAction"
             name="passwordForm"
             input="input"
             scope="request">

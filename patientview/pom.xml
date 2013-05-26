@@ -25,7 +25,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.worthsoln</groupId>
+    <groupId>org.patientview</groupId>
     <artifactId>patientview</artifactId>
     <packaging>war</packaging>
 
@@ -674,7 +674,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.worthsoln</groupId>
+            <groupId>org.patientview</groupId>
             <artifactId>pvdbschema</artifactId>
             <version>1.0-DEVELOP-SNAPSHOT</version>
             <scope>test</scope>

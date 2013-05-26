@@ -1,4 +1,5 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
 <%@ taglib uri="http://jakarta.apache.org/taglibs/datetime-1.0" prefix="dt" %>
@@ -33,7 +34,7 @@
 <div class="row">
 <logic:present name="aboutme">
 <logic:notEmpty name="aboutme">
-        <jsp:useBean id="aboutme" class="com.worthsoln.patientview.model.Aboutme" scope="request"/>
+        <jsp:useBean id="aboutme" class="org.patientview.patientview.model.Aboutme" scope="request"/>
     <div class="span3">
         <img src="aboutmeimage/<%= aboutme.getNhsno() %>" alt="" width="200">
     </div>

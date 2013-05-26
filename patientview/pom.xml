@@ -674,7 +674,7 @@
         </dependency>
 
         <dependency>
-            <groupId>org.patientview</groupId>
+            <groupId>com.worthsoln</groupId>
             <artifactId>pvdbschema</artifactId>
             <version>1.0-DEVELOP-SNAPSHOT</version>
             <scope>test</scope>

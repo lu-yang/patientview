@@ -264,6 +264,7 @@
                     <headerLocation>src/main/resources/checkstyle/checkstyle.license</headerLocation>
                     <failsOnError>true</failsOnError>
                     <consoleOutput>true</consoleOutput>
+                    <excludes>**/radar/**/*</excludes>
                 </configuration>
             </plugin>
 

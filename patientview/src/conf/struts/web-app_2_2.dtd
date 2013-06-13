@@ -197,7 +197,7 @@ The taglib element is used to describe a JSP tag library.
 
 <!--
 The taglib-uri element describes a URI, relative to the location
-of the web.xml document, identifying a Tag Library used in the Web
+of the patientview-web.xml document, identifying a Tag Library used in the Web
 Application.
 -->
 

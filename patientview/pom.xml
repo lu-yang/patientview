@@ -174,6 +174,7 @@
                             </includes>
                             <excludes>
                                 <exclude>web.xml</exclude>
+                                <exclude>radar-web.xml</exclude>
                             </excludes>
                         </fileset>
                     </filesets>

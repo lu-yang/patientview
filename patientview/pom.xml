@@ -195,6 +195,9 @@
                     <excludes>
                         <exclude>**/radar/**/*</exclude>
                     </excludes>
+                    <testExcludes>
+                        <exclude>**/radar/**/*</exclude>
+                    </testExcludes>
                 </configuration>
             </plugin>
 

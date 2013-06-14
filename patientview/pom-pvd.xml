@@ -35,6 +35,10 @@
                     <includes>
                         <include>**/worthsoln/test/*</include>
                     </includes>
+                    <testExcludes>
+                        <exclude>**/patientview/**/*</exclude>
+                        <exclude>**/radar/**/*</exclude>
+                    </testExcludes>
                 </configuration>
             </plugin>
         </plugins>

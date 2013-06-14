@@ -209,10 +209,10 @@
                             <maxIdleTime>3600000</maxIdleTime>
                         </connector>
                     </connectors>
-                    <!-- this config tells jetty to run with our filtered patientview-web.xml -->
+                    <!-- this config tells jetty to run with our filtered web.xml -->
                     <!--<webAppConfig>-->
                     <!--<contextPath>/</contextPath>-->
-                    <!--<descriptor>${project.build.directory}/patientview-web.xml</descriptor>-->
+                    <!--<descriptor>${project.build.directory}/web.xml</descriptor>-->
                     <!--</webAppConfig>-->
                 </configuration>
             </plugin>
@@ -244,8 +244,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1.1</version>
                 <configuration>
-                    <!-- when creating the war file use the filtered patientview-web.xml -->
-                    <!--<webXml>${project.build.directory}/patientview-web.xml</webXml>-->
+                    <!-- when creating the war file use the filtered web.xml -->
+                    <!--<webXml>${project.build.directory}/web.xml</webXml>-->
                     <!-- overwrite the default files with any build/environment specific ones -->
                 </configuration>
             </plugin>

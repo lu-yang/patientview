@@ -152,6 +152,9 @@
                     <excludes>
                         <exclude>**/worthsoln/**/*</exclude>
                     </excludes>
+                    <testExcludes>
+                        <exclude>**/worthsoln/**/*</exclude>
+                    </testExcludes>
                 </configuration>
             </plugin>
             <plugin>

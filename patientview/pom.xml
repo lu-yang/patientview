@@ -194,6 +194,7 @@
                     </compilerArguments>
                     <excludes>
                         <exclude>**/radar/**/*</exclude>
+                        <exclude>**/worthsoln/test/*</exclude>
                     </excludes>
                     <testExcludes>
                         <exclude>**/radar/**/*</exclude>

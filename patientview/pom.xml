@@ -191,6 +191,9 @@
                     <compilerArguments>
                         <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
                     </compilerArguments>
+                    <excludes>
+                        <exclude>**/radar/**/*</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
 

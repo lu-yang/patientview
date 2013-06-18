@@ -11,7 +11,7 @@ import org.patientview.radar.web.dataproviders.ProfessionalUserDataProvider;
 import org.patientview.radar.web.panels.RadarAjaxPagingNavigator;
 import org.patientview.radar.web.resources.RadarResourceFactory;
 import org.patientview.radar.service.ExportManager;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;

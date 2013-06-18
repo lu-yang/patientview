@@ -3,7 +3,7 @@ package org.patientview.radar.web.pages.admin;
 import org.patientview.radar.model.Demographics;
 import org.patientview.radar.model.user.PatientUser;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;

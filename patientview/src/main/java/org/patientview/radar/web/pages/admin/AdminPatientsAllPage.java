@@ -10,7 +10,7 @@ import org.patientview.radar.model.Demographics;
 import org.patientview.radar.model.enums.ExportType;
 import org.patientview.radar.model.filter.DemographicsFilter;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.service.ExportManager;
 import org.patientview.radar.web.dataproviders.DemographicsDataProvider;
 import org.apache.commons.lang.StringUtils;

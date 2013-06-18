@@ -7,7 +7,7 @@ import org.patientview.radar.model.enums.KidneyTransplantedNative;
 import org.patientview.radar.model.exception.InvalidModelException;
 import org.patientview.radar.model.sequenced.Pathology;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.service.PathologyManager;
 import org.patientview.radar.web.RadarApplication;
 import org.patientview.radar.web.choiceRenderers.DateChoiceRenderer;

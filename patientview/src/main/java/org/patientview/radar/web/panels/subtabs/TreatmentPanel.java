@@ -12,7 +12,7 @@ import org.patientview.radar.web.components.RadarRequiredDateTextField;
 import org.patientview.radar.web.models.RadarModelFactory;
 import org.patientview.radar.web.panels.firstvisit.YesNoRadioGroupPanel;
 import org.patientview.radar.web.panels.tables.DialysisTablePanel;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.service.ImmunosuppressionManager;
 import org.patientview.radar.service.PlasmapheresisManager;
 import org.patientview.radar.service.TherapyManager;

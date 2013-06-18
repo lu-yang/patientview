@@ -4,7 +4,7 @@ import org.patientview.radar.model.Hospitalisation;
 import org.patientview.radar.web.RadarApplication;
 import org.patientview.radar.web.components.RadarRequiredDateTextField;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.service.HospitalisationManager;
 import org.patientview.radar.web.choiceRenderers.DateChoiceRenderer;
 import org.patientview.radar.web.components.RadarComponentFactory;

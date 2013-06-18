@@ -18,7 +18,7 @@ import org.patientview.radar.model.generic.DiseaseGroup;
 import org.patientview.radar.model.user.User;
 import org.patientview.radar.service.ClinicalDataManager;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.web.panels.DiagnosisPanel;
 import org.patientview.radar.web.panels.FollowUpPanel;
 import org.apache.wicket.AttributeModifier;

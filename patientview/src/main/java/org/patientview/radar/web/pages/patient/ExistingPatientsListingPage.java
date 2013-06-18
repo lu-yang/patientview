@@ -11,7 +11,7 @@ import org.patientview.radar.web.pages.BasePage;
 import org.patientview.radar.web.pages.patient.hnf1b.HNF1BPatientPage;
 import org.patientview.radar.web.pages.patient.srns.SrnsPatientPage;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.web.dataproviders.DemographicsDataProvider;
 import org.patientview.radar.web.pages.patient.alport.AlportPatientPage;
 import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;

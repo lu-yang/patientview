@@ -6,7 +6,7 @@ import org.patientview.radar.web.panels.subtabs.TreatmentPanel;
 import org.patientview.radar.web.panels.FollowUpPanel;
 import org.patientview.radar.model.sequenced.Therapy;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.service.TherapyManager;
 import org.patientview.radar.web.choiceRenderers.DateChoiceRenderer;
 import org.apache.wicket.Component;

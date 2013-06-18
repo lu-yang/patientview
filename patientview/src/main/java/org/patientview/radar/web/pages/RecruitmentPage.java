@@ -4,7 +4,7 @@ import org.patientview.radar.web.RadarApplication;
 import org.patientview.radar.model.Demographics;
 import org.patientview.radar.model.user.User;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.web.dataproviders.DemographicsDataProvider;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.datetime.markup.html.basic.DateLabel;

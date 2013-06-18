@@ -139,11 +139,13 @@
         </testResources>
 
         <plugins>
+
+            <!-- Versions after 2.1 has a bug that ignores excludes.. Shocking but true https://netbeans.org/bugzilla/show_bug.cgi?id=99588 -->
             <plugin>
                 <inherited>true</inherited>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>2.1</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -157,6 +159,7 @@
                     </testExcludes>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>

@@ -6,7 +6,7 @@ import org.patientview.radar.web.RadarSecuredSession;
 import org.patientview.radar.web.components.RadarRequiredPasswordTextField;
 import org.patientview.radar.web.components.RadarRequiredTextField;
 import org.patientview.radar.web.pages.BasePage;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.patientview.radar.web.pages.ProfessionalsPage;
 import org.patientview.radar.web.pages.regisration.ChangeRegistrationDetails;
 import org.apache.wicket.Component;

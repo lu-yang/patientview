@@ -5,7 +5,7 @@ import org.patientview.radar.web.models.RadarModelFactory;
 import org.patientview.radar.web.panels.FirstVisitPanel;
 import org.patientview.radar.web.panels.subtabs.LaboratoryResultsPanel;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.Panel;

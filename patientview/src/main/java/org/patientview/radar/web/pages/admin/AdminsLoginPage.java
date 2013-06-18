@@ -5,7 +5,7 @@ import org.patientview.radar.web.components.RadarRequiredPasswordTextField;
 import org.patientview.radar.web.components.RadarRequiredTextField;
 import org.patientview.radar.web.pages.BasePage;
 import org.patientview.radar.model.user.AdminUser;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxSubmitLink;

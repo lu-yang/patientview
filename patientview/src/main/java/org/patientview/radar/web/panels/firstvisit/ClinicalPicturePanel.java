@@ -15,7 +15,7 @@ import org.patientview.radar.model.DiagnosisCode;
 import org.patientview.radar.model.sequenced.ClinicalData;
 import org.patientview.radar.service.ClinicalDataManager;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.web.choiceRenderers.DateChoiceRenderer;
 import org.patientview.radar.web.components.RadarComponentFactory;
 import org.apache.wicket.Component;

@@ -15,7 +15,7 @@ import org.patientview.radar.model.generic.DiseaseGroup;
 import org.patientview.radar.model.user.ProfessionalUser;
 import org.patientview.radar.model.user.User;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.patientview.radar.service.UtilityManager;
 import org.patientview.radar.web.RadarApplication;
 import org.patientview.radar.web.components.ComponentHelper;

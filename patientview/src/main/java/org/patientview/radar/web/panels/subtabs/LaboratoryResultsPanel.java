@@ -6,7 +6,7 @@ import org.patientview.radar.web.RadarApplication;
 import org.patientview.radar.web.components.RadarRequiredDateTextField;
 import org.patientview.radar.web.models.RadarModelFactory;
 import org.patientview.radar.service.ClinicalDataManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.service.LabDataManager;
 import org.patientview.radar.web.components.RadarComponentFactory;
 import org.patientview.radar.web.components.RadarTextFieldWithValidation;

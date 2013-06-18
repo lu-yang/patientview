@@ -7,7 +7,7 @@ import org.patientview.radar.web.pages.BasePage;
 import org.patientview.radar.model.exception.RegistrationException;
 import org.patientview.radar.model.exception.UserEmailAlreadyExists;
 import org.patientview.radar.model.user.ProfessionalUser;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.patientview.radar.service.UtilityManager;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;

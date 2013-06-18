@@ -19,7 +19,7 @@ import org.patientview.radar.model.enums.NhsNumberType;
 import org.patientview.radar.model.user.ProfessionalUser;
 import org.patientview.radar.model.user.User;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.patientview.radar.service.UtilityManager;
 import org.patientview.radar.service.generic.GenericDiagnosisManager;
 import org.patientview.radar.util.RadarUtility;

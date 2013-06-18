@@ -1,7 +1,7 @@
 package org.patientview.radar.service.impl;
 
 import org.patientview.radar.model.user.User;
-import org.patientview.renalpatientview.service.UserManager;
+import org.patientview.radar.service.UserManager;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.AuthenticationServiceException;

@@ -14,7 +14,7 @@ import org.patientview.radar.model.Transplant;
 import org.patientview.radar.model.exception.InvalidModelException;
 import org.patientview.radar.model.user.User;
 import org.patientview.radar.service.DemographicsManager;
-import org.patientview.renalpatientview.service.DiagnosisManager;
+import org.patientview.radar.service.DiagnosisManager;
 import org.patientview.radar.service.TransplantManager;
 import org.patientview.radar.service.TreatmentManager;
 import org.patientview.radar.web.panels.FollowUpPanel;

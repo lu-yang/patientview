@@ -154,6 +154,9 @@
                     <excludes>
                         <exclude>**/renalpatientview/**/*</exclude>
                     </excludes>
+                    <testIncludes>
+                        <include>*/**/org/patientview/radar/**/*</include>
+                    </testIncludes>
                     <testExcludes>
                         <exclude>**/renalpatientview/**/*</exclude>
                     </testExcludes>

@@ -3,13 +3,13 @@ package org.patientview.test.radar.dao;
 import org.patientview.radar.dao.DemographicsDao;
 import org.patientview.radar.dao.UserDao;
 import org.patientview.radar.dao.UtilityDao;
-import org.solidstategroup.radar.dao.UtilityDao;
+import org.patientview.radar.dao.UtilityDao;
 import org.patientview.radar.model.Demographics;
-import org.solidstategroup.radar.model.enums.NhsNumberType;
+import org.patientview.radar.model.enums.NhsNumberType;
 
 import org.patientview.radar.model.filter.PatientUserFilter;
-import org.solidstategroup.radar.model.filter.ProfessionalUserFilter;
-import org.solidstategroup.radar.model.user.AdminUser;
+import org.patientview.radar.model.filter.ProfessionalUserFilter;
+import org.patientview.radar.model.user.AdminUser;
 import org.patientview.radar.model.user.PatientUser;
 import org.patientview.radar.model.user.ProfessionalUser;
 import org.patientview.radar.model.user.User;

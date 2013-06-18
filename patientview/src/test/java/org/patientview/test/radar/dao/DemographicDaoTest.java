@@ -2,13 +2,13 @@ package org.patientview.test.radar.dao;
 
 import org.patientview.radar.dao.DemographicsDao;
 import org.patientview.radar.dao.DiagnosisDao;
-import org.solidstategroup.radar.model.Centre;
+import org.patientview.radar.model.Centre;
 import org.patientview.radar.model.Demographics;
 import org.patientview.radar.model.Diagnosis;
-import org.solidstategroup.radar.model.DiagnosisCode;
+import org.patientview.radar.model.DiagnosisCode;
 import org.patientview.radar.model.Sex;
 import org.patientview.radar.model.Status;
-import org.solidstategroup.radar.model.enums.NhsNumberType;
+import org.patientview.radar.model.enums.NhsNumberType;
 import org.patientview.radar.model.filter.DemographicsFilter;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

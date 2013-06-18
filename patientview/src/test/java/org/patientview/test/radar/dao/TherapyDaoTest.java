@@ -1,7 +1,7 @@
 package org.patientview.test.radar.dao;
 
 import org.patientview.radar.dao.TherapyDao;
-import org.solidstategroup.radar.dao.TherapyDao;
+import org.patientview.radar.dao.TherapyDao;
 import org.patientview.radar.model.sequenced.Therapy;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

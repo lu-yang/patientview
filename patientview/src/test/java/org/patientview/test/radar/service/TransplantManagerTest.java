@@ -3,7 +3,7 @@ package org.patientview.test.radar.service;
 import org.patientview.radar.model.Transplant;
 import org.patientview.radar.model.exception.InvalidModelException;
 import org.patientview.radar.service.TransplantManager;
-import org.solidstategroup.radar.service.TransplantManager;
+import org.patientview.radar.service.TransplantManager;
 import org.patientview.test.radar.TestPvDbSchema;
 import org.junit.Test;
 import org.junit.runner.RunWith;

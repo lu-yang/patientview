@@ -1,7 +1,7 @@
 package org.patientview.test.radar.util;
 
 import org.patientview.radar.util.TripleDes;
-import org.solidstategroup.radar.util.TripleDes;
+import org.patientview.radar.util.TripleDes;
 import org.junit.Test;
 
 import java.util.Arrays;

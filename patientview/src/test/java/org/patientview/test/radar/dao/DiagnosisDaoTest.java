@@ -2,7 +2,7 @@ package org.patientview.test.radar.dao;
 
 import org.patientview.radar.dao.DiagnosisDao;
 import org.patientview.radar.model.Diagnosis;
-import org.solidstategroup.radar.model.DiagnosisCode;
+import org.patientview.radar.model.DiagnosisCode;
 import org.patientview.radar.model.Karotype;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

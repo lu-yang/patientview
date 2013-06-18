@@ -25,7 +25,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.worthsoln</groupId>
+    <groupId>org.patientview</groupId>
     <artifactId>patientview</artifactId>
     <packaging>war</packaging>
 
@@ -194,7 +194,7 @@
                     </compilerArguments>
                     <excludes>
                         <exclude>**/radar/**/*</exclude>
-                        <exclude>**/worthsoln/test/*</exclude>
+                        <exclude>**/patientview/test/*</exclude>
                     </excludes>
                     <testExcludes>
                         <exclude>**/radar/**/*</exclude>

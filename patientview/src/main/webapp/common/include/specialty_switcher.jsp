@@ -1,8 +1,8 @@
-<%@ page import="com.worthsoln.utils.LegacySpringUtils" %>
-<%@ page import="com.worthsoln.patientview.model.User" %>
-<%@ page import="com.worthsoln.patientview.model.SpecialtyUserRole" %>
+<%@ page import="org.patientview.renalpatientview.utils.LegacySpringUtils" %>
+<%@ page import="org.patientview.renalpatientview.patientview.model.User" %>
+<%@ page import="org.patientview.renalpatientview.patientview.model.SpecialtyUserRole" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.worthsoln.patientview.model.Specialty" %>
+<%@ page import="org.patientview.renalpatientview.patientview.model.Specialty" %>
 <%--
   ~ PatientView
   ~

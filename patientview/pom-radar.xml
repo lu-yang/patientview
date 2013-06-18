@@ -150,10 +150,10 @@
                     <optimize>true</optimize>
                     <debug>true</debug>
                     <excludes>
-                        <exclude>**/worthsoln/**/*</exclude>
+                        <exclude>**/renalpatientview/**/*</exclude>
                     </excludes>
                     <testExcludes>
-                        <exclude>**/worthsoln/**/*</exclude>
+                        <exclude>**/renalpatientview/**/*</exclude>
                     </testExcludes>
                 </configuration>
             </plugin>
@@ -478,7 +478,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.worthsoln</groupId>
+            <groupId>org.patientview</groupId>
             <artifactId>pvdbschema</artifactId>
             <version>1.0-DEVELOP-SNAPSHOT</version>
             <scope>test</scope>

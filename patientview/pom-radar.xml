@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.solidstategroup</groupId>
+    <groupId>org.patientview</groupId>
     <artifactId>radar</artifactId>
     <packaging>war</packaging>
 
@@ -11,8 +11,8 @@
     <name>radar</name>
 
     <organization>
-        <name>Solid State Group</name>
-        <url>http://www.solidstategroup.com/</url>
+        <name>Patient View</name>
+        <url>http://www.patientview.org/</url>
     </organization>
 
     <licenses>

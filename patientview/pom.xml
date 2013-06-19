@@ -193,11 +193,14 @@
                         <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
                     </compilerArguments>
                     <excludes>
-                        <exclude>**/radar/**/*</exclude>
+                        <exclude>**/org/patientview/radar/**/*</exclude>
                         <exclude>**/patientview/test/*</exclude>
                     </excludes>
+                    <testIncludes>
+                        <include>*/**/org/patientview/renalpatientview/**/*</include>
+                    </testIncludes>
                     <testExcludes>
-                        <exclude>**/radar/**/*</exclude>
+                        <exclude>**/org/patientview/test/radar/**/*</exclude>
                     </testExcludes>
                 </configuration>
             </plugin>

@@ -3,7 +3,6 @@ package org.patientview.test.radar.dao;
 import org.patientview.radar.dao.DemographicsDao;
 import org.patientview.radar.dao.DiagnosisDao;
 import org.patientview.radar.dao.UtilityDao;
-import org.patientview.radar.dao.UtilityDao;
 import org.patientview.radar.model.Centre;
 import org.patientview.radar.model.Consultant;
 import org.patientview.radar.model.Country;

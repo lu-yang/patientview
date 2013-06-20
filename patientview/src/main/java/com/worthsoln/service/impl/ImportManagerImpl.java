@@ -1,16 +1,50 @@
-package com.worthsoln.patientview;
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+package com.worthsoln.service.impl;
 
 import com.worthsoln.ibd.model.Allergy;
 import com.worthsoln.ibd.model.MyIbd;
 import com.worthsoln.ibd.model.Procedure;
+import com.worthsoln.patientview.TestResultDateRange;
+import com.worthsoln.patientview.XmlImportUtils;
 import com.worthsoln.patientview.logging.AddLog;
-import com.worthsoln.patientview.model.*;
+import com.worthsoln.patientview.model.Centre;
+import com.worthsoln.patientview.model.Diagnosis;
+import com.worthsoln.patientview.model.Diagnostic;
+import com.worthsoln.patientview.model.Letter;
+import com.worthsoln.patientview.model.Medicine;
+import com.worthsoln.patientview.model.Patient;
+import com.worthsoln.patientview.model.TestResult;
 import com.worthsoln.patientview.parser.ResultParser;
 import com.worthsoln.patientview.user.UserUtils;
 import com.worthsoln.patientview.utils.TimestampUtils;
+import com.worthsoln.service.ImportManager;
 import com.worthsoln.utils.LegacySpringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -29,22 +63,29 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ResultsUpdater {
+/**
+ *
+ */
+@Service(value = "importManager")
+@Transactional(propagation = Propagation.REQUIRED)
+public class ImportManagerImpl implements ImportManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ResultsUpdater.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ImportManagerImpl.class);
 
+    @Override
     public void update(ServletContext context, File xmlFile) {
         File xsdFile;
         try {
             xsdFile = LegacySpringUtils.getSpringApplicationContextBean().getApplicationContext()
                     .getResource("classpath:importer/pv_schema_2.0.xsd").getFile();
         } catch (IOException e) {
-            throw new IllegalStateException("Cannot find pv_schema_2.0.xsd to perform ResultsUpdater.update()");
+            throw new IllegalStateException("Cannot find pv_schema_2.0.xsd to perform ImportManagerImpl.update()");
         }
 
         update(context, xmlFile, xsdFile);
     }
 
+    @Override
     public void update(ServletContext context, File xmlFile, File xsdFile) {
         /**
          * Check if the file is empty or not. If a file is completely empty, this probably means that the encryption
@@ -55,7 +96,6 @@ public class ResultsUpdater {
                     XmlImportUtils.extractFromXMLFileNameNhsno(xmlFile.getName()),
                     XmlImportUtils.extractFromXMLFileNameUnitcode(xmlFile.getName()), xmlFile.getName());
             XmlImportUtils.sendEmptyFileEmailToUnitAdmin(xmlFile, context);
-
         } else {
             validateAndProcess(context, xmlFile, xsdFile);
         }
@@ -96,9 +136,9 @@ public class ResultsUpdater {
             ResultParser parser = new ResultParser();
             parser.parseResults(context, xmlFile);
 
-            if ("Remove".equalsIgnoreCase(parser.getFlag()) || "Dead".equalsIgnoreCase(parser.getFlag()) ||
-                    "Died".equalsIgnoreCase(parser.getFlag()) || "Lost".equalsIgnoreCase(parser.getFlag()) ||
-                    "Suspend".equalsIgnoreCase(parser.getFlag())) {
+            if ("Remove".equalsIgnoreCase(parser.getFlag()) || "Dead".equalsIgnoreCase(parser.getFlag())
+                    || "Died".equalsIgnoreCase(parser.getFlag()) || "Lost".equalsIgnoreCase(parser.getFlag())
+                    || "Suspend".equalsIgnoreCase(parser.getFlag())) {
                 removePatientFromSystem(parser);
                 AddLog.addLog(AddLog.ACTOR_SYSTEM, AddLog.PATIENT_DATA_REMOVE, "", parser.getPatient().getNhsno(),
                         parser.getPatient().getCentreCode(), xmlFile.getName());
@@ -159,7 +199,7 @@ public class ResultsUpdater {
     }
 
     private void insertDiagnostics(Collection<Diagnostic> diagnostics) {
-        for (Iterator iterator = diagnostics.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = diagnostics.iterator(); iterator.hasNext();) {
             Diagnostic diagnostic = (Diagnostic) iterator.next();
             LegacySpringUtils.getDiagnosticManager().save(diagnostic);
         }
@@ -170,7 +210,7 @@ public class ResultsUpdater {
     }
 
     private void insertProcedures(Collection<Procedure> procedures) {
-        for (Iterator iterator = procedures.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = procedures.iterator(); iterator.hasNext();) {
             Procedure procedure = (Procedure) iterator.next();
             LegacySpringUtils.getIbdManager().saveProcedure(procedure);
         }
@@ -181,7 +221,7 @@ public class ResultsUpdater {
     }
 
     private void insertAllergies(Collection<Allergy> allergies) {
-        for (Iterator iterator = allergies.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = allergies.iterator(); iterator.hasNext();) {
             Allergy allergy = (Allergy) iterator.next();
             LegacySpringUtils.getIbdManager().saveAllergy(allergy);
         }
@@ -208,7 +248,7 @@ public class ResultsUpdater {
     }
 
     private void deleteDateRanges(Collection dateRanges) {
-        for (Iterator iterator = dateRanges.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = dateRanges.iterator(); iterator.hasNext();) {
             TestResultDateRange testResultDateRange = (TestResultDateRange) iterator.next();
 
             Calendar startDate = TimestampUtils.createTimestampStartDay(testResultDateRange.getStartDate());
@@ -217,19 +257,18 @@ public class ResultsUpdater {
             LegacySpringUtils.getTestResultManager().deleteTestResultsWithinTimeRange(testResultDateRange.getNhsNo(),
                     testResultDateRange.getUnitcode(), testResultDateRange.getTestCode(), startDate.getTime(),
                     stopDate.getTime());
-
         }
     }
 
     private void insertResults(Collection testResults) {
-        for (Iterator iterator = testResults.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = testResults.iterator(); iterator.hasNext();) {
             TestResult testResult = (TestResult) iterator.next();
             LegacySpringUtils.getTestResultManager().save(testResult);
         }
     }
 
     private void deleteLetters(Collection letters) {
-        for (Iterator iterator = letters.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = letters.iterator(); iterator.hasNext();) {
             Letter letter = (Letter) iterator.next();
 
             LegacySpringUtils.getLetterManager().delete(letter.getNhsno(), letter.getUnitcode(),
@@ -238,7 +277,7 @@ public class ResultsUpdater {
     }
 
     private void insertLetters(Collection letters) {
-        for (Iterator iterator = letters.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = letters.iterator(); iterator.hasNext();) {
             Letter letter = (Letter) iterator.next();
             LegacySpringUtils.getLetterManager().save(letter);
         }
@@ -246,11 +285,10 @@ public class ResultsUpdater {
 
     private void deleteOtherDiagnoses(String nhsno, String unitcode) {
         LegacySpringUtils.getDiagnosisManager().deleteOtherDiagnoses(nhsno, unitcode);
-
     }
 
     private void insertOtherDiagnoses(Collection diagnoses) {
-        for (Iterator iterator = diagnoses.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = diagnoses.iterator(); iterator.hasNext();) {
             Diagnosis diagnosis = (Diagnosis) iterator.next();
             LegacySpringUtils.getDiagnosisManager().save(diagnosis);
         }
@@ -261,7 +299,7 @@ public class ResultsUpdater {
     }
 
     private void insertMedicines(Collection medicines) {
-        for (Iterator iterator = medicines.iterator(); iterator.hasNext(); ) {
+        for (Iterator iterator = medicines.iterator(); iterator.hasNext();) {
             Medicine medicine = (Medicine) iterator.next();
             LegacySpringUtils.getMedicineManager().save(medicine);
         }

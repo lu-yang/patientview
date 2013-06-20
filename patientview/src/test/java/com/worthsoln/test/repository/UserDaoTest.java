@@ -1,6 +1,30 @@
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+
 package com.worthsoln.test.repository;
 
 import com.worthsoln.patientview.model.Specialty;
+import com.worthsoln.patientview.model.Unit;
 import com.worthsoln.patientview.model.UserMapping;
 import com.worthsoln.patientview.model.User;
 import com.worthsoln.patientview.unit.UnitUtils;
@@ -16,6 +40,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  *      Test UserMappingDao and UserDao
@@ -27,6 +52,9 @@ public class UserDaoTest extends BaseDaoTest {
 
     @Inject
     private UserMappingDao userMappingDao;
+
+    @Inject
+    private UnitDao unitDao;
 
     @Inject
     private RepositoryHelpers repositoryHelpers;
@@ -95,6 +123,8 @@ public class UserDaoTest extends BaseDaoTest {
         user.setPassword("password");
         user.setUsername("test");
         user.setAccountlocked(true);
+        user.setIsclinician(true);
+        user.setIsrecipient(false);
 
         userDao.save(user);
 
@@ -109,6 +139,8 @@ public class UserDaoTest extends BaseDaoTest {
         assertTrue("User not found via username", checkUser != null && checkUser.equals(user));
 
         assertTrue("Account locked not persisted", checkUser.isAccountlocked());
+        assertFalse("IsRecipient not persisted", checkUser.isIsrecipient());
+        assertTrue("IsClinician not persisted", checkUser.isIsclinician());
     }
 
     @Test
@@ -279,5 +311,92 @@ public class UserDaoTest extends BaseDaoTest {
         assertEquals("incorrect number of duplicates found for nhsno1", 1, userMappings.size());
 
         assertEquals("incorrect duplicate found for nhsno1", "usernameDuplicate1", userMappings.get(0).getUsername());
+    }
+
+    @Test
+    public void testGetUsers() {
+        // Add usermapping
+        UserMapping userMapping1 = new UserMapping();
+        userMapping1.setSpecialty(specialty);
+        userMapping1.setNhsno("nhsno1");
+        userMapping1.setUnitcode("UNITCODE1");
+        userMapping1.setUsername("testname1");
+
+        userMappingDao.save(userMapping1);
+
+        UserMapping userMapping2 = new UserMapping();
+        userMapping2.setSpecialty(specialty);
+        userMapping2.setNhsno("nhsno1");
+        userMapping2.setUnitcode("UNITCODE1");
+        userMapping2.setUsername("testname2");
+
+        userMappingDao.save(userMapping2);
+
+        UserMapping userMapping3 = new UserMapping();
+        userMapping3.setSpecialty(specialty);
+        userMapping3.setNhsno("nhsno1");
+        userMapping3.setUnitcode("UNITCODE1");
+        userMapping3.setUsername("testname3-GP");
+
+        userMappingDao.save(userMapping3);
+
+        // Add user
+        User user = new User();
+        user.setEmail("test@worthsolns.com");
+        user.setName("Firstname Lastname");
+        user.setPassword("password");
+        user.setUsername("username1");
+        userDao.save(user);
+
+        User user1 = new User();
+        user1.setEmail("test1@worthsolns.com");
+        user1.setName("Firstname Lastname1");
+        user1.setPassword("password1");
+        user1.setUsername("testname1");
+        userDao.save(user1);
+
+        User user2 = new User();
+        user2.setEmail("test2@worthsolns.com");
+        user2.setName("Firstname Lastname2");
+        user2.setPassword("password2");
+        user2.setUsername("testname2");
+        userDao.save(user2);
+
+        User user3 = new User();
+        user3.setEmail("test3@worthsolns.com");
+        user3.setName("Firstname Lastname3");
+        user3.setPassword("password3");
+        user3.setUsername("testname3-GP");
+        userDao.save(user3);
+
+        User user4 = new User();
+        user4.setEmail("test2@worthsolns.com");
+        user4.setName("Firstname Lastname2");
+        user4.setPassword("password2");
+        user4.setUsername("username2");
+        userDao.save(user4);
+
+        // Add SpecialtyUserRole
+        repositoryHelpers.createSpecialtyUserRole(specialty, user, "unitadmin");
+        repositoryHelpers.createSpecialtyUserRole(specialty, user1, "patient");
+        repositoryHelpers.createSpecialtyUserRole(specialty, user2, "patient");
+        repositoryHelpers.createSpecialtyUserRole(specialty, user3, "patient");
+        repositoryHelpers.createSpecialtyUserRole(specialty, user4, "patient");
+
+        Unit unitRm301 = new Unit();
+        unitRm301.setUnitcode("UNITCODE1");
+        unitRm301.setName("RM301: RUNNING MAN TEST UNIT");
+        unitRm301.setShortname("RM301");
+        unitRm301.setRenaladminemail("renaladmin@mailinator.com");
+        unitRm301.setSpecialty(specialty);
+        //unitDao.save(unitRm301);
+
+        List<User> checkUserList = userDao.get(user, specialty, "patient", unitRm301); System.out.println("unitcode = " +unitRm301.getUnitcode());
+
+        assertEquals("Wrong number of users", checkUserList.size(), 2);
+        assertFalse("User 3 found in users", checkUserList.contains(user3));
+        assertFalse("User 4 found in users", checkUserList.contains(user4));
+        assertTrue("User 1 not found in users", checkUserList.contains(user1));
+        assertTrue("User 2 not found in users", checkUserList.contains(user2));
     }
 }

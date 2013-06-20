@@ -1,3 +1,26 @@
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+
 messages = {};
 
 messages.init = function() {
@@ -85,6 +108,7 @@ messages.sendMessage = function(form) {
         submitBtn = $form.find('.js-message-submit-btn'),
         originalBtnValue = submitBtn.val(),
         recipientIdEl = $form.find('.js-message-recipient-id'),
+        unitCodeEl = $form.find('.js-message-unit-code'),
         conversationIdEl = $form.find('.js-message-conversation-id'),
         contentEl = $form.find('.js-message-content'),
         subjectEl = $form.find('.js-message-subject'),
@@ -104,7 +128,7 @@ messages.sendMessage = function(form) {
 
     // if no convo el then its a new convo
     if (conversationIdEl.length === 0) {
-        if (!messages.validateNumber(recipientIdEl.val())) {
+        if (!messages.validateRecipient(recipientIdEl.val())) {
             errors.push('Please select a recipient');
         }
 
@@ -130,6 +154,7 @@ messages.sendMessage = function(form) {
         if (conversationIdEl.length === 0) {
             data.recipientId = recipientIdEl.val();
             data.subject = subjectEl.val();
+            data.unitCode = unitCodeEl.val();
         } else {
             data.conversationId = conversationIdEl.val()
         }
@@ -149,7 +174,11 @@ messages.sendMessage = function(form) {
                         messagesEl.append(messages.getMessageHtml(data.message));
                         contentEl.val('');
                     } else {
-                        window.location.href = redirectEl.val() + '?conversationId=' + data.message.conversation.id + '#response';
+                        if (recipientIdEl.val() == "allAdmins" || recipientIdEl.val() == "allPatients" || recipientIdEl.val() == "allStaff") {
+                            window.location.href = "/control/messaging/message_confirm.jsp"
+                        } else {
+                            window.location.href = redirectEl.val() + '?conversationId=' + data.message.conversation.id + '#response';
+                        }
                     }
                 }
             },
@@ -167,6 +196,10 @@ messages.validateString = function(s) {
 
 messages.validateNumber = function(n) {
     return n > 0 && !isNaN(n);
+};
+
+messages.validateRecipient = function(n) {
+    return n != null && n != "";
 };
 
 // add in a dom ready to fire utils.init

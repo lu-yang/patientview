@@ -1,7 +1,31 @@
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+
 package com.worthsoln.repository.impl.messaging;
 
 import com.worthsoln.patientview.model.Conversation;
 import com.worthsoln.patientview.model.Conversation_;
+import com.worthsoln.patientview.model.enums.GroupEnum;
 import com.worthsoln.repository.AbstractHibernateDAO;
 import com.worthsoln.repository.messaging.ConversationDao;
 import org.springframework.stereotype.Repository;
@@ -57,6 +81,33 @@ public class ConversationDaoImpl extends AbstractHibernateDAO<Conversation> impl
                 builder.equal(root.get(Conversation_.participant2), participantId)));
 
         buildWhereClause(criteria, wherePredicates);
+
+        criteria.orderBy(builder.asc(root.get(Conversation_.started)));
+
+        return getEntityManager().createQuery(criteria).getResultList();
+    }
+
+    @Override
+    public List<Conversation> getConversations(Long participantId, GroupEnum groupEnum) {
+        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Conversation> criteria = builder.createQuery(Conversation.class);
+
+        Root<Conversation> root = criteria.from(Conversation.class);
+
+        Predicate predicate1 = builder.and(
+                builder.equal(root.get(Conversation_.deleted), false),
+                builder.or(builder.equal(root.get(Conversation_.participant1), participantId),
+                builder.equal(root.get(Conversation_.participant2), participantId)));
+
+        Predicate predicate2 = builder.and(
+                builder.equal(root.get(Conversation_.deleted), false),
+                builder.equal(root.get(Conversation_.type), "BULK"),
+                builder.equal(root.get(Conversation_.groupEnum), groupEnum)
+        );
+
+        predicate2 = builder.or(predicate1, predicate2);
+
+        criteria.where(predicate2);
 
         criteria.orderBy(builder.asc(root.get(Conversation_.started)));
 

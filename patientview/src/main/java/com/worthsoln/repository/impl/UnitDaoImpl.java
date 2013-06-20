@@ -1,3 +1,26 @@
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+
 package com.worthsoln.repository.impl;
 
 import com.worthsoln.patientview.logon.UnitAdmin;
@@ -204,22 +227,22 @@ public class UnitDaoImpl extends AbstractHibernateDAO<Unit> implements UnitDao {
 
     @Override
     public List<UnitAdmin> getUnitUsers(String unitcode, Specialty specialty) {
-        String sql = "SELECT " +
-                "  u.*  " +
-                "FROM " +
-                "   User u, " +
-                "   UserMapping um, " +
-                "   SpecialtyUserRole sur " +
-                "WHERE " +
-                "   u.username = um.username " +
-                "AND " +
-                "   u.id = sur.user_id " +
-                "AND " +
-                "   sur.specialty_id = :specialtyId " +
-                "AND " +
-                "   um.unitcode = :unitcode " +
-                "AND " +
-                "   (sur.role = 'unitadmin' OR sur.role = 'unitstaff')";
+        String sql = "SELECT "
+                + "  u.*  "
+                + "FROM "
+                + "   User u, "
+                + "   UserMapping um, "
+                + "   SpecialtyUserRole sur "
+                + "WHERE "
+                + "   u.username = um.username "
+                + "AND "
+                + "   u.id = sur.user_id "
+                + "AND "
+                + "   sur.specialty_id = :specialtyId "
+                + "AND "
+                + "   um.unitcode = :unitcode "
+                + "AND "
+                + "   (sur.role = 'unitadmin' OR sur.role = 'unitstaff')";
 
         Query query = getEntityManager().createNativeQuery(sql, User.class);
 
@@ -238,6 +261,8 @@ public class UnitDaoImpl extends AbstractHibernateDAO<Unit> implements UnitDao {
             unitAdmin.setEmailverfied(user.isEmailverified());
             unitAdmin.setRole(user.getRole());
             unitAdmin.setFirstlogon(user.isFirstlogon());
+            unitAdmin.setIsrecipient(user.isIsrecipient());
+            unitAdmin.setIsclinician(user.isIsclinician());
             unitAdmin.setLastlogon(user.getLastlogon());
             unitAdmin.setAccountlocked(user.isAccountlocked());
             unitAdmins.add(unitAdmin);
@@ -248,22 +273,22 @@ public class UnitDaoImpl extends AbstractHibernateDAO<Unit> implements UnitDao {
 
     @Override
     public List<User> getUnitPatientUsers(String unitcode, Specialty specialty) {
-        String sql = "SELECT " +
-                "   u.* " +
-                "FROM " +
-                "   usermapping um, " +
-                "   USER u, " +
-                "   specialtyuserrole sur " +
-                "WHERE" +
-                "   um.username = u.username " +
-                "AND" +
-                "   u.id = sur.user_id " +
-                "AND" +
-                "   sur.specialty_id = :specialtyId " +
-                "AND" +
-                "   um.unitcode = :unitcode " +
-                "AND" +
-                "   sur.role = 'patient' ";
+        String sql = "SELECT "
+                + "   u.* "
+                + "FROM "
+                + "   usermapping um, "
+                + "   USER u, "
+                + "   specialtyuserrole sur "
+                + "WHERE"
+                + "   um.username = u.username "
+                + "AND"
+                + "   u.id = sur.user_id "
+                + "AND"
+                + "   sur.specialty_id = :specialtyId "
+                + "AND"
+                + "   um.unitcode = :unitcode "
+                + "AND"
+                + "   sur.role = 'patient' ";
 
         Query query = getEntityManager().createNativeQuery(sql, User.class);
 

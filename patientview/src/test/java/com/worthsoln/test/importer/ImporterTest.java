@@ -1,3 +1,26 @@
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+
 package com.worthsoln.test.importer;
 
 import com.worthsoln.ibd.model.Allergy;
@@ -15,6 +38,7 @@ import com.worthsoln.patientview.model.TestResult;
 import com.worthsoln.patientview.model.Unit;
 import com.worthsoln.service.CentreManager;
 import com.worthsoln.service.DiagnosticManager;
+import com.worthsoln.service.ImportManager;
 import com.worthsoln.service.LetterManager;
 import com.worthsoln.service.LogEntryManager;
 import com.worthsoln.service.MedicineManager;
@@ -24,9 +48,8 @@ import com.worthsoln.service.TimeManager;
 import com.worthsoln.service.UnitManager;
 import com.worthsoln.service.ibd.IbdManager;
 import com.worthsoln.service.impl.SpringApplicationContextBean;
-import com.worthsoln.test.helpers.RepositoryHelpers;
-import com.worthsoln.test.helpers.impl.TestableResultsUpdater;
-import com.worthsoln.test.repository.BaseDaoTest;
+import com.worthsoln.test.helpers.ServiceHelpers;
+import com.worthsoln.test.service.BaseServiceTest;
 import com.worthsoln.utils.LegacySpringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +74,7 @@ import static org.junit.Assert.*;
  * - pv_schema_1.0.xml - used by rpv
  * - pv_schema_2.0.xml - used by ibd
  */
-public class ImporterTest extends BaseDaoTest {
+public class ImporterTest extends BaseServiceTest {
 
     @Inject
     private SpringApplicationContextBean springApplicationContextBean;
@@ -64,6 +87,9 @@ public class ImporterTest extends BaseDaoTest {
 
     @Inject
     private DiagnosticManager diagnosticManager;
+
+    @Inject
+    private ImportManager importManager;
 
     @Inject
     private MedicineManager medicineManager;
@@ -81,7 +107,7 @@ public class ImporterTest extends BaseDaoTest {
     private UnitManager unitManager;
 
     @Inject
-    private RepositoryHelpers repositoryHelpers;
+    private ServiceHelpers serviceHelpers;
 
     @Inject
     private LogEntryManager logEntryManager;
@@ -99,7 +125,7 @@ public class ImporterTest extends BaseDaoTest {
         mockSpecialty.setContext("renal");
         mockSpecialty.setDescription("Renal Patient View");
 
-        mockSpecialty = repositoryHelpers.createSpecialty("Specialty1", "ten1", "A test specialty");
+        mockSpecialty = serviceHelpers.createSpecialty("Specialty1", "ten1", "A test specialty");
 
         mockUnit.setSpecialty(mockSpecialty);
 
@@ -132,10 +158,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkLogEntry(XmlImportUtils.extractFromXMLFileNameNhsno(xmlFileResource.getFile().getName()),
@@ -171,10 +196,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         List<TestResult> results = testResultManager.get("9999999995", "DUMMY");
@@ -182,7 +206,7 @@ public class ImporterTest extends BaseDaoTest {
         assertEquals("Incorrect number of results after first import", 1, results.size());
 
         // double run
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         results = testResultManager.get("9999999995", "DUMMY");
@@ -207,10 +231,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkNoDataHasBeenImportedFromIBDImportFile();
@@ -258,10 +281,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkNoDataHasBeenImportedFromIBDImportFile();
@@ -284,10 +306,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkNoDataHasBeenImportedFromIBDImportFile();
@@ -324,10 +345,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkLogEntry(XmlImportUtils.extractFromXMLFileNameNhsno(xmlFileResource.getFile().getName()),
@@ -348,10 +368,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkNoDataHasBeenImportedFromIBDImportFile();
@@ -372,10 +391,9 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkLogEntry(XmlImportUtils.extractFromXMLFileNameNhsno(xmlFileResource.getFile().getName()),
@@ -398,13 +416,12 @@ public class ImporterTest extends BaseDaoTest {
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:importer/pv_schema_2.0.xsd");
 
-        TestableResultsUpdater testableResultsUpdater = new TestableResultsUpdater();
         MockHttpSession mockHttpSession = new MockHttpSession();
 
         // run twice
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
-        testableResultsUpdater.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
+        importManager.update(mockHttpSession.getServletContext(), xmlFileResource.getFile(),
                 xsdFileResource.getFile());
 
         checkLogEntry(XmlImportUtils.extractFromXMLFileNameNhsno(xmlFileResource.getFile().getName()),

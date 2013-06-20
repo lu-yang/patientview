@@ -1,5 +1,29 @@
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+
 package com.worthsoln.patientview.model;
 
+import com.worthsoln.patientview.model.enums.GroupEnum;
 import org.apache.commons.lang.StringUtils;
 
 import javax.persistence.Column;
@@ -7,6 +31,9 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 import java.util.Date;
 
 @Entity
@@ -26,7 +53,7 @@ public class Message extends BaseModel {
     @JoinColumn(name = "sender_id")
     private User sender;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "recipient_id")
     private User recipient;
 
@@ -40,13 +67,26 @@ public class Message extends BaseModel {
     @Transient
     private String friendlyDate;
 
+    @Column(nullable = true)
+    @Enumerated(EnumType.STRING)
+    private GroupEnum groupEnum;
+
+    @Column(nullable = true)
+    private String type;
+
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
+
+    private static final int SUMMARY_LENGTH = 500;
+
     public String getFormattedContent() {
         return content.replaceAll("\n", "<br/>");
     }
 
     public String getSummary() {
-        if (content.length() > 500) {
-            return StringUtils.substring(content, 0, 500) + " ...";
+        if (content.length() > SUMMARY_LENGTH) {
+            return StringUtils.substring(content, 0, SUMMARY_LENGTH) + " ...";
         }
 
         return content;
@@ -114,5 +154,29 @@ public class Message extends BaseModel {
 
     public void setFriendlyDate(String friendlyDate) {
         this.friendlyDate = friendlyDate;
+    }
+
+    public GroupEnum getGroupEnum() {
+        return groupEnum;
+    }
+
+    public void setGroupEnum(GroupEnum groupEnum) {
+        this.groupEnum = groupEnum;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 }

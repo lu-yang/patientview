@@ -1,3 +1,26 @@
+/*
+ * PatientView
+ *
+ * Copyright (c) Worth Solutions Limited 2004-2013
+ *
+ * This file is part of PatientView.
+ *
+ * PatientView is free software: you can redistribute it and/or modify it under the terms of the
+ * GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ * PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+ * the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License along with PatientView in a file
+ * titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @package PatientView
+ * @link http://www.patientview.org
+ * @author PatientView <info@patientview.org>
+ * @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+ * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+ */
+
 package com.worthsoln.patientview.messaging;
 
 import com.worthsoln.ibd.action.BaseAction;
@@ -15,14 +38,16 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RecipientByUnitAction extends BaseAction {
 
-    protected ObjectMapper objectMapper = new ObjectMapper();
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
                                  HttpServletResponse response) throws Exception {
         User user = UserUtils.retrieveUser(request);
 
         // only do this if its a superadmin
-        if (getSecurityUserManager().isRolePresent("superadmin")) {
+        if (getSecurityUserManager().isRolePresent("superadmin")
+                || getSecurityUserManager().isRolePresent("unitadmin")) {
+
             String unitCode = getUnitCode(request);
 
             if (StringUtils.hasText(unitCode)) {
@@ -35,6 +60,7 @@ public class RecipientByUnitAction extends BaseAction {
                             getMessageManager().getUnitStaffRecipients(unit, user));
                     request.setAttribute(Messaging.UNIT_PATIENT_RECIPIENTS_PARAM,
                             getMessageManager().getUnitPatientRecipients(unit, user));
+                    request.setAttribute(Messaging.UNIT_NAME_PARAM, unit.getName());
                 }
             }
         }

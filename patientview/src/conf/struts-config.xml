@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 
+<!--
+  ~ PatientView
+  ~
+  ~ Copyright (c) Worth Solutions Limited 2004-2013
+  ~
+  ~ This file is part of PatientView.
+  ~
+  ~ PatientView is free software: you can redistribute it and/or modify it under the terms of the
+  ~ GNU General Public License as published by the Free Software Foundation, either version 3 of the License,
+  ~ or (at your option) any later version.
+  ~ PatientView is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
+  ~ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  ~ GNU General Public License for more details.
+  ~ You should have received a copy of the GNU General Public License along with PatientView in a file
+  ~ titled COPYING. If not, see <http://www.gnu.org/licenses/>.
+  ~
+  ~ @package PatientView
+  ~ @link http://www.patientview.org
+  ~ @author PatientView <info@patientview.org>
+  ~ @copyright Copyright (c) 2004-2013, Worth Solutions Limited
+  ~ @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
+  -->
+
 <!DOCTYPE struts-config PUBLIC
     "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
     "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
@@ -69,6 +92,8 @@
       <form-property name="accountlocked" type="java.lang.String"/>
       <form-property name="showgps" type="java.lang.String"/>
       <form-property name="overrideInvalidNhsno" type="java.lang.String"/>
+      <form-property name="isrecipient" type="java.lang.String"/>
+      <form-property name="isclinician" type="java.lang.String"/>
     </form-bean>
     <form-bean name="unitForm" type="org.apache.struts.validator.DynaValidatorActionForm">
       <form-property name="unitcode" type="java.lang.String"/>
@@ -244,11 +269,12 @@
       <form-bean name="sendMessageForm" type="org.apache.struts.action.DynaActionForm">
           <form-property name="content" type="java.lang.String"/>
           <form-property name="subject" type="java.lang.String"/>
-          <form-property name="recipientId" type="java.lang.Long"/>
+          <form-property name="recipientId" type="java.lang.String"/>
           <form-property name="conversationId" type="java.lang.Long"/>
+          <form-property name="unitCode" type="java.lang.String"/>
       </form-bean>
   </form-beans>
-    
+
   <!-- ========== Global Forward Definitions ============================== -->
   <global-forwards>
     <forward name="control"                    path="/control/index.jsp"/>
@@ -511,7 +537,7 @@
       <forward name="input" path="/patient/aboutme_image_upload_error.jsp"/>
       <forward name="success" path="/patient/aboutme_display.jsp"/>
     </action>
-      
+
     <action path="/patient/feedbackForm" type="com.worthsoln.patientview.feedback.FeedbackFormAction" parameter="contact"
             name="feedbackForm"
             input="input">

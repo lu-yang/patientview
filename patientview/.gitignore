@@ -8,3 +8,4 @@ out/
 *.iws
 src/main/webapp/WEB-INF/
 !src/main/webapp/WEB-INF/web.xml
+!src/main/webapp/WEB-INF/radar-web.xml

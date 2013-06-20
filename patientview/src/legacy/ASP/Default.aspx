@@ -56,7 +56,7 @@
                 style="height: 90px; margin-left: 15px;" 
                 title="The Renal Organisation" class="auto-style1" /><img alt="British Association of Paediatric Nephrology" title="British Association of Paediatric Nephrologists" class="auto-style4" height="150" src="images/logos/bapn-logo3.jpg" width="150" />&nbsp;
             <img alt="UK Renal Registry" 
-                src="images/logos/Reports_logo%5B1%5D.gif"
+                src="images/logos/Reports_logo[1].gif" 
                 style="height: 90px; " title="UK Renal Registry" class="auto-style3" /><img alt="Medical Research Council" src="images/logos/logo_mrc.gif" 
                 style="width: 181px; height: 79px; " title="Medical Research Council" class="auto-style5" /></p>
                 

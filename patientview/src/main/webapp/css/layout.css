@@ -81,7 +81,7 @@ a:active {
 
 #outerWrapper #header {
   /*line-height: 15px;*/
-  background: #8ab573 url(../../../../../../src/main/webapp/images/header-bg.png) repeat-y right center;
+  background: #8ab573 url(../images/header-bg.png) repeat-y right center;
   font-size: 100%;
   padding: 10px 10px 10px 0; /*top was 10*/
   font-weight: bold;

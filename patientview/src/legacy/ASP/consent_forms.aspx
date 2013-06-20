@@ -173,24 +173,24 @@ function EW_jumpMenu(el,frm,sel) {//v1.0
     
     <asp:Panel ID="pnlCardiffSRNS" runat="server" Visible="false">
     <blockquote>
-    <p><a href="docs/cardiff/Adolescent%20Assent%20Form%20v1%2001.10.09.pdf" target="_blank" title="Adolescent Assent Form">Adolescent Assent Form</a></p>
-    <p><a href="docs/cardiff/Adolescent%20Info%20Sheet%20v4%2010.05.2010.pdf" target="_blank" title="Adolescent Information Sheet">Adolescent Information Sheet</a></p>
-    <p><a href="docs/cardiff/Children's%20Info%20Sheet%20v1%2023.09.09.pdf" target="_blank" title="Children's Information Sheet">Children's Information Sheet</a></p>
-    <p><a href="docs/cardiff/GP%20Consultant%20Info%20Sheet%20v1%2011.11.09.pdf" target="_blank" title="GP-Consultant Information Sheet">GP-Consultant Information Sheet</a></p>
-    <p><a href="docs/cardiff/Letter%20of%20Invitation%20v1%2021.09.09.pdf" target="_blank" title="Letter of Invitation">Letter of Invitation</a></p>
-    <p><a href="docs/cardiff/Parent%20Guardian%20Consent%20Form%20v3%2023.09.09.pdf" target="_blank" title="Parent Guardian Consent Form">Parent Guardian Consent Form</a></p>
+    <p><a href="docs/cardiff/Adolescent Assent Form v1 01.10.09.pdf" target="_blank" title="Adolescent Assent Form">Adolescent Assent Form</a></p>
+    <p><a href="docs/cardiff/Adolescent Info Sheet v4 10.05.2010.pdf" target="_blank" title="Adolescent Information Sheet">Adolescent Information Sheet</a></p>
+    <p><a href="docs/cardiff/Children's Info Sheet v1 23.09.09.pdf" target="_blank" title="Children's Information Sheet">Children's Information Sheet</a></p>
+    <p><a href="docs/cardiff/GP Consultant Info Sheet v1 11.11.09.pdf" target="_blank" title="GP-Consultant Information Sheet">GP-Consultant Information Sheet</a></p>
+    <p><a href="docs/cardiff/Letter of Invitation v1 21.09.09.pdf" target="_blank" title="Letter of Invitation">Letter of Invitation</a></p>
+    <p><a href="docs/cardiff/Parent Guardian Consent Form v3 23.09.09.pdf" target="_blank" title="Parent Guardian Consent Form">Parent Guardian Consent Form</a></p>
     </blockquote>
     </asp:Panel>
 
     <asp:Panel ID="pnlEvelinaSRNS" runat="server" Visible="false">
     <blockquote>
-    <p><a href="docs/evelina/SRNS%20Assent%20Form%20v1%2001%2010%2009_ECH.pdf" target="_blank" title="Adolescent Assent Form">Adolescent Assent Form</a></p>
-    <p><a href="docs/evelina/SRNS%20Adolescent%20PIS%20v3%2011%2011%2009_ECH.pdf" target="_blank" title="Adolescent Information Sheet">Adolescent Information Sheet</a></p>
-    <p><a href="docs/evelina/SRNS%20Children%20PIS%20v1%2023%2009%2009_ECH.pdf" target="_blank" title="Children's Information Sheet">Children's Information Sheet</a></p>
-    <p><a href="docs/evelina/GP-Consultant%20Information%20Sheet_ECH.pdf" target="_blank" title="GP-Consultant Information Sheet">GP-Consultant Information Sheet</a></p>
-    <p><a href="docs/evelina/Letter%20of%20invitation_ECH.pdf" target="_blank" title="Letter of Invitation">Letter of Invitation</a></p>
-    <p><a href="docs/evelina/SRNS%20Parent%20PIS%20v5%2011%2011%2009_ECH.pdf" target="_blank" tabindex="Parent Guardian Information Sheet">Parent Guardian Information Sheet</a></p>
-    <p><a href="docs/evelina/SRNS%20Consent%20Form%20v4%2030%2010%2009_ECH.pdf" target="_blank" title="Parent Guardian Consent Form">Parent Guardian Consent Form</a></p>
+    <p><a href="docs/evelina/SRNS Assent Form v1 01 10 09_ECH.pdf" target="_blank" title="Adolescent Assent Form">Adolescent Assent Form</a></p>
+    <p><a href="docs/evelina/SRNS Adolescent PIS v3 11 11 09_ECH.pdf" target="_blank" title="Adolescent Information Sheet">Adolescent Information Sheet</a></p>
+    <p><a href="docs/evelina/SRNS Children PIS v1 23 09 09_ECH.pdf" target="_blank" title="Children's Information Sheet">Children's Information Sheet</a></p>
+    <p><a href="docs/evelina/GP-Consultant Information Sheet_ECH.pdf" target="_blank" title="GP-Consultant Information Sheet">GP-Consultant Information Sheet</a></p>
+    <p><a href="docs/evelina/Letter of invitation_ECH.pdf" target="_blank" title="Letter of Invitation">Letter of Invitation</a></p>
+    <p><a href="docs/evelina/SRNS Parent PIS v5 11 11 09_ECH.pdf" target="_blank" tabindex="Parent Guardian Information Sheet">Parent Guardian Information Sheet</a></p>
+    <p><a href="docs/evelina/SRNS Consent Form v4 30 10 09_ECH.pdf" target="_blank" title="Parent Guardian Consent Form">Parent Guardian Consent Form</a></p>
        </blockquote>
     </asp:Panel>
     
@@ -252,9 +252,9 @@ function EW_jumpMenu(el,frm,sel) {//v1.0
    
     <asp:Panel id="pnlLeedsSRNS" runat="server" visible="false">
     <blockquote>
-    <p><a href="docs/leeds/Adolescent%20PIS%20v3%2011.11.09.pdf" target="_blank" title="Adolescent Information Sheet">Adolescent Information Sheet</a></p>
-    <p><a href="docs/leeds/Assent%20Form%20v1%2001.10.09.pdf" target="_blank" title="Adolescent Assent Form">Adolescent Assent Form</a></p>
-    <p><a href="docs/leeds/Children%20PIS%20v1%2023.09.09.pdf" target="_blank" title="Children's Information Sheet">Children's Information Sheet</a></p>
+    <p><a href="docs/leeds/Adolescent PIS v3 11.11.09.pdf" target="_blank" title="Adolescent Information Sheet">Adolescent Information Sheet</a></p>
+    <p><a href="docs/leeds/Assent Form v1 01.10.09.pdf" target="_blank" title="Adolescent Assent Form">Adolescent Assent Form</a></p>
+    <p><a href="docs/leeds/Children PIS v1 23.09.09.pdf" target="_blank" title="Children's Information Sheet">Children's Information Sheet</a></p>
     	<p>
 		<a href="docs/leeds/Consent%20Form%20v4%2030.10.09.pdf" target="_blank" title="Parent Guardian Consent Form">
 		Parent Guardian Consent Form</a></p>

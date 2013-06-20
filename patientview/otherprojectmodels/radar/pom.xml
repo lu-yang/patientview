@@ -483,6 +483,13 @@
             <version>3.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.patientview</groupId>
+            <artifactId>pvdbschema</artifactId>
+            <version>1.0-DEVELOP-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

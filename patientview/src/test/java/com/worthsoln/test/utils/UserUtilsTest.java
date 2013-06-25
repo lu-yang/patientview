@@ -37,7 +37,8 @@ public class UserUtilsTest {
     }
 
     @Test
-    public void testOverridingNHSNoValidation() {
-        assertTrue("Valid NHS No did not pass validation", UserUtils.isNhsNumberValid("7428721474"));
+    public void testOverridingValidationWithUppercaseNHSNo() {
+        assertTrue("Invalid NHS No with uppercase letters did not pass validation although validation should have " +
+                "been overridden", UserUtils.isNhsNumberValid("12F45A6789", true));
     }
 }

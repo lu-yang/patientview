@@ -23,13 +23,12 @@
 
 package com.worthsoln.patientview.model.radar;
 
-import com.worthsoln.patientview.model.BaseModel;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity(name = "rdr_user_mapping")
-public class RadarUserMapping extends BaseModel {
+public class RadarUserMapping implements Serializable {
 
     @Column
     private Long userId;

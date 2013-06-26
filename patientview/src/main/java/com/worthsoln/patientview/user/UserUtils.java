@@ -83,7 +83,7 @@ public final class UserUtils {
         return isNhsNumberValid(nhsNumber, true);
     }
 
-    public static boolean isNhsNumberValid(String nhsNumber, boolean ignoreUppercaseLetters) {
+    private static boolean isNhsNumberValid(String nhsNumber, boolean ignoreUppercaseLetters) {
 
         // Remove all whitespace and non-visible characters such as tab, new line etc
         nhsNumber = nhsNumber.replaceAll("\\s", "");

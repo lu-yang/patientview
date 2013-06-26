@@ -39,6 +39,6 @@ public class UserUtilsTest {
     @Test
     public void testOverridingValidationWithUppercaseNHSNo() {
         assertTrue("Invalid NHS No with uppercase letters did not pass validation although validation should have " +
-                "been overridden", UserUtils.isNhsNumberValid("12F45A6789", true));
+                "been overridden", UserUtils.isNhsNumberValidWhenUppercaseLettersAreAllowed("12F45A6789"));
     }
 }

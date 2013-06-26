@@ -23,12 +23,16 @@
 
 package com.worthsoln.patientview.model.radar;
 
+import com.worthsoln.patientview.model.BaseModel;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.io.Serializable;
 
+/**
+ *  todo model this correctly as a composite primary key, in the database there is no id column
+ */
 @Entity(name = "rdr_user_mapping")
-public class RadarUserMapping implements Serializable {
+public class RadarUserMapping extends BaseModel {
 
     @Column
     private Long userId;

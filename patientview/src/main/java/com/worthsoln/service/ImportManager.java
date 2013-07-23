@@ -30,6 +30,8 @@ import java.io.File;
  */
 public interface ImportManager {
 
+    void updateUsingNewTransaction(ServletContext context, File xmlFile);
+
     void update(ServletContext context, File xmlFile);
 
     void update(ServletContext context, File xmlFile, File xsdFile);

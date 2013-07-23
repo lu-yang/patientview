@@ -151,7 +151,7 @@ public class ImporterTest extends BaseServiceTest {
      *              - deleteMedicines
      *              - insertMedicines
      */
-    public void testXmlParserUsingRenalFile() throws IOException {
+    public void testXmlParserUsingRenalFile() throws Exception {
 
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:A_00794_1234567890.gpg.xml");
@@ -190,7 +190,7 @@ public class ImporterTest extends BaseServiceTest {
     }
 
     @Test
-    public void testTestResultIsNotDuplicatedIfDoubleRun() throws IOException {
+    public void testTestResultIsNotDuplicatedIfDoubleRun() throws Exception {
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:DUMMY_000002_9999999995.gpg.xml");
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
@@ -225,7 +225,7 @@ public class ImporterTest extends BaseServiceTest {
      * @throws IOException
      */
     @Test
-    public void testXmlParserUsingEmptyIBDFile() throws IOException {
+    public void testXmlParserUsingEmptyIBDFile() throws Exception {
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:rm301_empty_9876543210.xml");
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
@@ -275,7 +275,7 @@ public class ImporterTest extends BaseServiceTest {
      * @throws IOException
      */
     @Test
-    public void testXmlParserCheckFutureTestResultDateInIBDFile() throws IOException {
+    public void testXmlParserCheckFutureTestResultDateInIBDFile() throws Exception {
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:rm301_resultWithFutureDate_9876543210.xml");
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
@@ -300,7 +300,7 @@ public class ImporterTest extends BaseServiceTest {
      * @throws IOException
      */
     @Test
-    public void testXmlParserCheckTestResultOutsideDataRangeInIBDFile() throws IOException {
+    public void testXmlParserCheckTestResultOutsideDataRangeInIBDFile() throws Exception {
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:rm301_resultWithOutsideDaterange_9876543210.xml");
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
@@ -323,7 +323,7 @@ public class ImporterTest extends BaseServiceTest {
      * @throws IOException
      */
     @Test
-    public void testXmlParserCheckTestResultWithValidDates() throws IOException {
+    public void testXmlParserCheckTestResultWithValidDates() throws Exception {
 
         /**
          *  Fix the current date to always be the same.
@@ -362,7 +362,7 @@ public class ImporterTest extends BaseServiceTest {
      * @throws IOException
      */
     @Test
-    public void testXmlParserCheckTestResultWithEmptyValueInIBDFile() throws IOException {
+    public void testXmlParserCheckTestResultWithEmptyValueInIBDFile() throws Exception {
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:rm301_resultWithEmptyValue_9876543210.xml");
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
@@ -385,7 +385,7 @@ public class ImporterTest extends BaseServiceTest {
      * @throws IOException
      */
     @Test
-    public void testXmlParserUsingIBDFile() throws IOException {
+    public void testXmlParserUsingIBDFile() throws Exception {
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:rm301_1244_9876543210.xml");
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
@@ -410,7 +410,7 @@ public class ImporterTest extends BaseServiceTest {
      * If you run the import twice for the same file we still have the same data set
      */
     @Test
-    public void testXmlParserUsingIBDFileMultipleRuns() throws IOException {
+    public void testXmlParserUsingIBDFileMultipleRuns() throws Exception {
         Resource xmlFileResource = springApplicationContextBean.getApplicationContext()
                 .getResource("classpath:rm301_1244_9876543210.xml");
         Resource xsdFileResource = springApplicationContextBean.getApplicationContext()
